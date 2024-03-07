@@ -1,0 +1,18 @@
+<%- include('./includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/client.css">
+    </head>
+
+    <body>
+        <h1 style="text-align: center;"><% if (editing) { %>Edit Client<% } else { %>Add Client<% } %></h1>
+        <form action="/<% if (editing) { %>edit-client<% } else { %>add-client<% } %>" method="post">
+            <input name="name" type="text" value="<% if (editing) { %><%= r_client.name %><% } %>" placeholder="First Name">
+            <input name="lastName" type="text" value="<% if (editing) { %><%= r_client.lastName %><% } %>" placeholder="Last Name">
+            <input name="email" type="email" value="<% if (editing) { %><%= r_client.email %><% } %>" placeholder="Email Address">
+            <input name="phone" type="text" value="<% if (editing) { %><%= r_client.phone %><% } %>" placeholder="Mobile No.">
+            <input name="project" type="text" value="<% if (editing) { %><%= r_client.project %><% } %>" placeholder="Project Name">
+            <% if (editing) { %>
+                <input type="hidden" value="<%= r_client._id %>" name="clientId">
+            <% } %>
+            <button><% if (editing) { %>Edit Client<% } else { %>Create Client<% } %></button>
+        </form>
+        <%- include('./includes/end.ejs') %>

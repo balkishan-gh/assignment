@@ -1,0 +1,38 @@
+<%- include('./includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/client.css">
+    </head>
+
+    <body>
+        <div>
+            <h1>Clients Panel</h1>
+        </div>
+        <!-- <div>
+            <h1>Clients</h1>
+        </div> -->
+            <table>
+                <tr>
+                  <th>Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Mobile No.</th>
+                  <th>Project</th>
+                </tr>
+                <% for (let client of clients) { %>
+                <tr>
+                  <td><%= client.name %></td>
+                  <td><%= client.lastName %></td>
+                  <td><%= client.email %></td>
+                  <td><%= client.phone %></td>
+                  <td><%= client.project %></td>
+                  <td><a href="/edit-client/<%= client._id %>?edit=true">Edit</a></td>
+                  <td>
+                    <form action="/delete-client" method="post">
+                        <input type="hidden" value="<%= client._id %>" name="clientId">
+                        <button>Delete</button>
+                    </form>
+                  </td>
+                </tr>
+                <% } %>
+              </table>
+        </div>
+        <%- include('./includes/end.ejs') %>
